@@ -1,6 +1,6 @@
 import React, {  useState } from "react";
-import { BookContextProvider } from "../../Context/Context";
 import MarkAsReadBooks from "../../Component/MarkAsReadBookLIst/MarkAsReadBooks";
+import WishListBooks from "../../Component/WishListBooks/WishListBooks";
 
 const BooksPage = () => {
   const [ActiveBtn, setActiveBtn] = useState(true);
@@ -11,7 +11,7 @@ const BooksPage = () => {
       </div>
       <div className="flex border-b border-gray-300">
         <button
-          className={`px-6 py-2 font-medium ${
+          className={`px-6 py-2 font-medium cursor-pointer ${
             ActiveBtn
               ? "border border-gray-300 border-b-white bg-white text-black rounded-xl rounded-b-none -mb-px"
               : "text-gray-400"
@@ -22,7 +22,7 @@ const BooksPage = () => {
         </button>
 
         <button
-          className={`px-6 py-2 font-medium  ${
+          className={`px-6 py-2 font-medium cursor-pointer ${
             !ActiveBtn
               ? "border border-gray-300 border-b-white bg-white text-black rounded-xl rounded-b-none -mb-px"
               : "text-gray-400"
@@ -33,7 +33,7 @@ const BooksPage = () => {
         </button>
       </div>
       {
-        ActiveBtn ? <MarkAsReadBooks></MarkAsReadBooks> : "jani na "
+        ActiveBtn ? <MarkAsReadBooks></MarkAsReadBooks> : <WishListBooks></WishListBooks>
       }
     </>
   );

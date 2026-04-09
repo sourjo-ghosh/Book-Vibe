@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { BookContextProvider } from "../../Context/Context";
+import { BookContext } from "../../Context/Context";
 import { MapPin, StickyNote, UserRound } from "lucide-react";
 import { NavLink } from "react-router";
 
 const MarkAsReadBooks = () => {
-  const { storeRead } = useContext(BookContextProvider);
+  const { storeRead } = useContext(BookContext);
   console.log(storeRead);
   if (storeRead.length === 0) {
     return (
@@ -12,6 +12,7 @@ const MarkAsReadBooks = () => {
         <h1 className="text-3xl font-bold text-center">
           You Don't Have Added Any Book To Your List
         </h1>
+        <p className="my-2 text-[#1E1E1E]/80">Your list is Empty</p>
         <NavLink to={"/"} className="my-5 bg-[#23BE0A] text-[#FFFFFF] p-4 rounded-2xl">
           Go To Home
         </NavLink>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useLoaderData, useParams } from "react-router";
-import { BookContextProvider } from "../../Context/Context";
+import { BookContext } from "../../Context/Context";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -8,7 +8,7 @@ const BookDetails = () => {
   const book = Array.isArray(books)
     ? books.find((item) => String(item.bookId) === id)
     : null;
-  const {HandleMarkAsReadBtn } = useContext(BookContextProvider);
+  const {HandleMarkAsReadBtn, HandleWishListBtn } = useContext(BookContext);
 
   if (!book) {
     return (
@@ -130,7 +130,7 @@ const BookDetails = () => {
                 >
                   Mark as Read
                 </button>
-                <button className="inline-flex w-full items-center justify-center rounded-2xl border border-[#D1D5DB] bg-white px-8 py-4 text-base font-semibold text-[#111827] transition hover:bg-[#F3F4F6] sm:w-auto cursor-pointer">
+                <button className="inline-flex w-full items-center justify-center rounded-2xl border border-[#D1D5DB] bg-white px-8 py-4 text-base font-semibold text-[#111827] transition hover:bg-[#F3F4F6] sm:w-auto cursor-pointer" onClick={()=> HandleWishListBtn(book)}>
                   Add to Wishlist
                 </button>
               </div>
