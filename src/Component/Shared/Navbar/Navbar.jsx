@@ -1,8 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <div className="sticky top-2">
+    <div className="sticky top-1">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -25,31 +26,99 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow gap-3"
             >
               <li>
-                <a>Home</a>
+                <NavLink
+                  to={"/"}
+                  className={({ isActive }) =>
+                    `btn btn-ghost p-5${
+                      isActive
+                        ? "text-[#23BE0A] border border-[#23BE0A]  hover:bg-white"
+                        : "hover:border hover:border-[#23BE0A] hover:bg-white"
+                    }`
+                  }
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <a>Listed Books</a>
+                <NavLink
+                  to={"/books"}
+                  className={({ isActive }) =>
+                    `btn btn-ghost p-5${
+                      isActive
+                        ? "text-[#23BE0A] border border-[#23BE0A]  hover:bg-white"
+                        : "hover:border hover:border-[#23BE0A] hover:bg-white"
+                    }`
+                  }
+                >
+                  Listed Books
+                </NavLink>
               </li>
               <li>
-                <a>Pages to Read</a>
+                <NavLink
+                  to={"/ddd"}
+                  className={({ isActive }) =>
+                    `btn btn-ghost p-5${
+                      isActive
+                        ? "text-[#23BE0A] border border-[#23BE0A]  hover:bg-white"
+                        : "hover:border hover:border-[#23BE0A] hover:bg-white"
+                    }`
+                  }
+                >
+                  Pages to Read
+                </NavLink>
               </li>
             </ul>
           </div>
-          <a className="text-[22px] md:text-3xl lg:text-3xl font-bold text-[#131313]">Book Vibe</a>
+          <h2 className="text-[22px] md:text-3xl lg:text-3xl font-bold text-[#131313]">
+            Book Vibe
+          </h2>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 gap-4">
             <li>
-              <a className="">Home</a>
+              <NavLink
+                to={"/"}
+                className={({ isActive }) =>
+                  `btn btn-ghost p-5${
+                    isActive
+                      ? "text-[#23BE0A] border border-[#23BE0A]  hover:bg-white"
+                      : "hover:border hover:border-[#23BE0A] hover:bg-white"
+                  }`
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <a href="">Listed Books</a>
+              <NavLink
+                to={"/books"}
+                className={({ isActive }) =>
+                  `btn btn-ghost p-5${
+                    isActive
+                      ? "text-[#23BE0A] border border-[#23BE0A]  hover:bg-white"
+                      : "hover:border hover:border-[#23BE0A] hover:bg-white"
+                  }`
+                }
+              >
+                Listed Books
+              </NavLink>
             </li>
             <li>
-              <a>Pages to Read</a>
+              <NavLink
+                to={"/ddd"}
+                className={({ isActive }) =>
+                  `btn btn-ghost p-5${
+                    isActive
+                      ? "text-[#23BE0A] border border-[#23BE0A]  hover:bg-white"
+                      : "hover:border hover:border-[#23BE0A] hover:bg-white"
+                  }`
+                }
+              >
+                Pages to Read
+              </NavLink>
             </li>
           </ul>
         </div>
