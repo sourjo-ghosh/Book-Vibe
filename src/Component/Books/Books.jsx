@@ -5,8 +5,8 @@ import { Link } from "react-router";
 const Books = ({ book }) => {
   return (
     <Link to={`/bookDetails/${book.bookId}`} className="card bg-base-100 w-96 p-5 border border-[#131313]/15">
-      <figure className="bg-[#F3F3F3] rounded-2xl">
-        <img src={book.image} alt="books" className="h-62.5 p-5" />
+      <figure className="bg-[#F3F3F3]  rounded-2xl">
+        <img src={book.image} alt="books" className="h-62.5 p-5 rounded-[28px] object-cover"/>
       </figure>
       <div className="my-5 flex gap-2">
         {book.tags.map((tags) => (
