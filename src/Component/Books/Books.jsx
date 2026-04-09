@@ -1,10 +1,10 @@
 import { Star } from "lucide-react";
 import React from "react";
+import { Link } from "react-router";
 
 const Books = ({ book }) => {
-  console.log(book);
   return (
-    <div className="card bg-base-100 w-96 p-5 border border-[#131313]/15">
+    <Link to={`/bookDetails/${book.bookId}`} className="card bg-base-100 w-96 p-5 border border-[#131313]/15">
       <figure className="bg-[#F3F3F3] rounded-2xl">
         <img src={book.image} alt="books" className="h-62.5 p-5" />
       </figure>
@@ -30,7 +30,7 @@ const Books = ({ book }) => {
           <p className="flex justify-center items-center gap-2">{book.rating}<Star></Star> </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
