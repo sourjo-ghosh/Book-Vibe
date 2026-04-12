@@ -1,13 +1,33 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import MarkAsReadBooks from "../../Component/MarkAsReadBookLIst/MarkAsReadBooks";
 import WishListBooks from "../../Component/WishListBooks/WishListBooks";
 
 const BooksPage = () => {
   const [ActiveBtn, setActiveBtn] = useState(true);
+  const [sortingType, setSortingType] = useState('')
+  // console.log(sortingType)
   return (
     <>
       <div className="text-center text-3xl font-semibold my-5 bg-[#131313]/5 p-5 rounded-2xl">
         <h1>Books</h1>
+      </div>
+      <div className="flex justify-center my-6">
+        <div className="dropdown dropdown-start">
+          <div tabIndex={0} role="button" className="btn m-1">
+            Sort By ⬇️ {sortingType}
+          </div>
+          <ul
+            tabIndex="-1"
+            className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+          >
+            <li onClick={()=> setSortingType('pages')}>
+              <a>Pages</a>
+            </li>
+            <li onClick={()=> setSortingType('rating')}>
+              <a>Rating</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="flex border-b border-gray-300">
         <button
@@ -32,9 +52,11 @@ const BooksPage = () => {
           Wishlist Books
         </button>
       </div>
-      {
-        ActiveBtn ? <MarkAsReadBooks></MarkAsReadBooks> : <WishListBooks></WishListBooks>
-      }
+      {ActiveBtn ? (
+        <MarkAsReadBooks sortingType={sortingType}></MarkAsReadBooks>
+      ) : (
+        <WishListBooks sortingType={sortingType}></WishListBooks>
+      )}
     </>
   );
 };

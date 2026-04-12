@@ -1,10 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BookContext } from "../../Context/Context";
 import { NavLink } from "react-router";
 import { MapPin, StickyNote, UserRound } from "lucide-react";
-const WishListBooks = () => {
+const WishListBooks = ({sortingType}) => {
   const { storeWishList } = useContext(BookContext);
-  if (storeWishList.length === 0) {
+  const [filteredData, setFilteredData] = useState(storeWishList)
+  useEffect(()=>{
+    if(sortingType){
+      if(sortingType === 'pages'){
+        const sortedData = [...storeWishList].sort((a,b)=> a.totalPages - b.totalPages)
+        setFilteredData(sortedData)
+      } else if(sortingType === 'rating'){
+        const sortedData = [...storeWishList].sort((a,b)=> a.rating-b.rating)
+        setFilteredData(sortedData)
+      }
+    }
+  }, [sortingType, storeWishList])
+  if (filteredData.length === 0) {
     return (
       <div className="my-10 bg-[#1E1E1E]/5 p-15 rounded-2xl flex flex-col items-center justify-center">
         <h1 className="text-3xl font-bold text-center">
@@ -23,11 +35,11 @@ const WishListBooks = () => {
   return (
     <>
       <>
-        {storeWishList.map((book) => {
+        {filteredData.map((book) => {
           return (
             <div className="p-5 mt-10 border border-[#1E1E1E]/15 rounded-2xl md:flex lg:flex  gap-3">
               <div className="p-4 bg-[#131313]/5 rounded-2xl flex justify-center items-center">
-                <img src={book.image} alt="" className="w-[200px] h-[250px]" />
+                <img src={book.image} alt="" className="w-50 h-62" />
               </div>
               <div className="my-2">
                 <h1 className="font-bold text-2xl">{book.bookName}</h1>
