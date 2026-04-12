@@ -14,7 +14,7 @@ const BooksPage = () => {
       <div className="flex justify-center my-6">
         <div className="dropdown dropdown-start">
           <div tabIndex={0} role="button" className="btn m-1">
-            Sort By ⬇️ {sortingType}
+            Sort By ⬇️ {sortingType.toUpperCase()}
           </div>
           <ul
             tabIndex="-1"
@@ -25,6 +25,9 @@ const BooksPage = () => {
             </li>
             <li onClick={()=> setSortingType('rating')}>
               <a>Rating</a>
+            </li>
+            <li onClick={()=> setSortingType('publisher Year')}>
+              <a>Publisher Year</a>
             </li>
           </ul>
         </div>

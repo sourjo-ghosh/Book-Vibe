@@ -1,23 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext,  useMemo } from "react";
 import { BookContext } from "../../Context/Context";
 import { MapPin, StickyNote, UserRound } from "lucide-react";
 import { NavLink } from "react-router";
 
 const MarkAsReadBooks = ({sortingType}) => {
   const { storeRead } = useContext(BookContext);
-  const [filteredReadList, setFilteredReadList] = useState(storeRead)
-  useEffect(()=>{
-    if(sortingType){
-      if(sortingType === 'pages'){
-        const sortedData = [...storeRead].sort((a,b) => a.totalPages - b.totalPages)
-        setFilteredReadList(sortedData)
-      } else if(sortingType === 'rating'){
-        const sortedData = [...storeRead].sort((a,b)=> a.rating -b.rating)
-        setFilteredReadList(sortedData)
-      }
+  const filteredData = useMemo(()=>{
+    if(sortingType === 'pages'){
+      return [...storeRead].sort((a,b)=> a.totalPages - b.totalPages)
+    } else if(sortingType === 'rating'){
+      return [...storeRead].sort((a,b)=> b.rating - a.rating)
+    }else if(sortingType === 'publisher Year'){
+      return [...storeRead].sort((a,b)=> b.yearOfPublishing - a.yearOfPublishing)
+    } else{
+      return storeRead
     }
   }, [sortingType, storeRead])
-  if (filteredReadList.length === 0) {
+  if (filteredData.length === 0) {
     return (
       <div className="my-10 bg-[#1E1E1E]/5 p-15 rounded-2xl flex flex-col items-center justify-center">
         <h1 className="text-3xl font-bold text-center">
@@ -32,11 +31,11 @@ const MarkAsReadBooks = ({sortingType}) => {
   }
   return (
     <>
-      {filteredReadList.map((book) => {
+      {filteredData.map((book) => {
         return (
           <div className="p-5 mt-10 border border-[#1E1E1E]/15 rounded-2xl md:flex lg:flex  gap-3">
             <div className="p-4 bg-[#131313]/5 rounded-2xl flex justify-center items-center">
-              <img src={book.image} alt="" className="w-50 h-63" />
+              <img src={book.image} alt="" className="w-50 h-63 rounded-2xl" />
             </div>
             <div className="my-2">
               <h1 className="font-bold text-2xl">{book.bookName}</h1>
